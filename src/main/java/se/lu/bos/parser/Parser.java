@@ -443,7 +443,7 @@ public class Parser {
     private GameObject buildGameObject(Integer id, String row) {
         String type = row.substring(row.indexOf("TYPE:")+5, row.indexOf("COUNTRY:"));
         String name = row.substring(row.indexOf("NAME:")+5, row.indexOf("PID:"));
-        String parentId = row.substring(row.indexOf(" PID:")+5);
+        String parentId = row.substring(row.indexOf(" PID:")+5).split(" ")[0];
         Integer countryCode = Integer.parseInt(row.substring(row.indexOf(" COUNTRY:") + 9, row.indexOf(" NAME:")));
         return new GameObject(id, name, type, parentId.equals("-1") ? GameObjectType.VEHICLE : GameObjectType.PILOT, Integer.parseInt(parentId), countryFromCode(countryCode));
     }
